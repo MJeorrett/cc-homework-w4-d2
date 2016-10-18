@@ -14,7 +14,7 @@ get '/table-names' do
   erb(:table_names)
 end
 
-get '/:table_name' do
+get '/table/:table_name' do
   names_array = DbInterface.table_names( DBNAME )
   table_name = params[:table_name]
 
