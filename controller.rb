@@ -9,7 +9,7 @@ DBNAME = "shoe_shop"
 
 get '/table-names' do
   names_array = DbInterface.table_names( DBNAME )
-  @names_html = HtmlBuilder.unordered_list_from_array( names_array )
+  @names_html = HtmlBuilder.ul_from_array( names_array )
   @dbname = DBNAME
   erb(:table_names)
 end
