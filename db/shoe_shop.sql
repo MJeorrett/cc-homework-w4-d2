@@ -20,3 +20,9 @@ CREATE TABLE shoes (
   price DECIMAL(8, 2),
   order_id INT4 REFERENCES orders(id)
 );
+
+
+INSERT INTO customers(first_name, last_name) VALUES ('Matthew', 'Jeorrett')
+INSERT INTO customers(first_name, last_name) VALUES ('Catriona', 'Jeorrett')
+INSERT INTO customers(first_name, last_name) VALUES ('David', 'Oleary')
+INSERT INTO customers(first_name, last_name) VALUES ('Martin', 'Harkins')

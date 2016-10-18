@@ -17,10 +17,17 @@ end
 get '/:table_name' do
   names_array = DbInterface.table_names( DBNAME )
   table_name = params[:table_name]
+
   if names_array.include?( table_name )
-    @html = "#{DBNAME} has the table '#{table_name}'!"
+
+    data = DbInterface.all_records( DBNAME, table_name )
+    @html = HtmlBuilder.table_for_data( data )
+
   else
+
     @html = "There is no table '#{table_name}' in the #{DBNAME} database :-("
+
   end
+
   erb(:basic)
 end

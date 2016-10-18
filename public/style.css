@@ -1,0 +1,39 @@
+body {
+  color: DodgerBlue;
+}
+
+table, thead {
+  border: 2px DodgerBlue solid;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: LightBlue;
+}
+
+th, tr, td {
+  border: 1px DodgerBlue solid;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.total {
+  text-align: right;
+}
+
+.numeric {
+  text-align: center;
+}
+
+tfoot {
+  font-weight: bold;
+  border-top-style: double;
+}
