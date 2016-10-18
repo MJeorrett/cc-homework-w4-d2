@@ -25,7 +25,7 @@ get '/table/:table_name' do
 
   else
 
-    @html = "There is no table '#{table_name}' in the #{DBNAME} database :-("
+    @html = "There is no table '#{table_name}' in the '#{DBNAME}' database :-("
 
   end
 
@@ -39,17 +39,20 @@ get '/table/:table_name/new' do
 
   if names_array.include?( table_name )
     fields_data = DbInterface.columns_data( DBNAME, table_name )
-    puts fields_data
     action = "/table/#{table_name}/new"
     @html = HtmlBuilder.form_for_fields( fields_data, action )
   else
-    @html = "There is no table '#{table_name}' in the #{DBNAME} database :-("
+    @html = "There is no table '#{table_name}' in the '#{DBNAME}' database :-("
   end
 
   erb(:basic)
 end
 
 post '/table/:table_name/new' do
-  @html = "new record posted to '/table/#{params[:table_name]}/new' with data: #{params}"
-  erb(:basic)
+  table_name = params[:table_name]
+  names_array = DbInterface.columns_data( DBNAME, table_name ).map { |data| data[:column] }
+  values_array = names_array.map { |name| params[name] }
+  DbInterface.create_record( DBNAME, table_name, names_array, values_array )
+
+  redirect to("/table/#{table_name}")
 end

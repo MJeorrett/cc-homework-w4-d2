@@ -34,4 +34,9 @@ class DbInterface
     return columns_data
   end
 
+  def self.create_record( db_name, table_name, columns, values )
+    sql = "INSERT INTO #{table_name}(#{columns.join(", ")}) VALUES (#{values.map { |value| "'#{value.gsub("'", "''")}'"}.join(", ")})"
+    SqlRunner.run( db_name, sql )
+  end
+
 end
