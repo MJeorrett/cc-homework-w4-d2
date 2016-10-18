@@ -39,7 +39,7 @@ class HtmlBuilder
     html = "<form action='#{action}' method='post'>"
 
     fields.each do |field|
-      name = field[:name]
+      name = field[:column]
       html += "<label for='#{name}'>#{name}</label>"
       html += "<input type='text' name='#{name}' />"
       html += "<br><br>"

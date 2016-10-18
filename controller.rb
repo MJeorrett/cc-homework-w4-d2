@@ -33,13 +33,19 @@ get '/table/:table_name' do
 end
 
 get '/table/:table_name/new' do
-  fields = [
-    {name: "first_name"},
-    {name: "last_name"}
-  ]
+
+  names_array = DbInterface.table_names( DBNAME )
   table_name = params[:table_name]
-  action = "/table/#{table_name}/new"
-  @html = HtmlBuilder.form_for_fields( fields, action )
+
+  if names_array.include?( table_name )
+    fields_data = DbInterface.columns_data( DBNAME, table_name )
+    puts fields_data
+    action = "/table/#{table_name}/new"
+    @html = HtmlBuilder.form_for_fields( fields_data, action )
+  else
+    @html = "There is no table '#{table_name}' in the #{DBNAME} database :-("
+  end
+
   erb(:basic)
 end
 
