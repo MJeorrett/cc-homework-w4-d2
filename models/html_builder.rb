@@ -35,4 +35,18 @@ class HtmlBuilder
     return html
   end
 
+  def self.form_for_fields( fields, action )
+    html = "<form action='#{action}' method='post'>"
+
+    fields.each do |field|
+      name = field[:name]
+      html += "<label for='#{name}'>#{name}</label>"
+      html += "<input type='text' name='#{name}' />"
+      html += "<br><br>"
+    end
+
+    html += "<input type='submit' value='Submit' />"
+    html += "</form>"
+  end
+
 end

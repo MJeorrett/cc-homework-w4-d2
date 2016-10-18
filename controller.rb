@@ -31,3 +31,19 @@ get '/table/:table_name' do
 
   erb(:basic)
 end
+
+get '/table/:table_name/new' do
+  fields = [
+    {name: "first_name"},
+    {name: "last_name"}
+  ]
+  table_name = params[:table_name]
+  action = "/table/#{table_name}/new"
+  @html = HtmlBuilder.form_for_fields( fields, action )
+  erb(:basic)
+end
+
+post '/table/:table_name/new' do
+  @html = "new record posted to '/table/#{params[:table_name]}/new' with data: #{params}"
+  erb(:basic)
+end
